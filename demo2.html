@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AR小花游戏</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        #container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: #fff;
+            font-size: 24px;
+            text-align: center;
+            overflow: hidden;
+        }
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #f00;
+            transition: all 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <video id="background" playsinline autoplay muted></video>
+    </div>
+    <script>
+        var container = document.getElementById("container");
+        var video = document.getElementById("background");
+        var flowers = [];
+        var score = 0;
+        var lastClickTime = 0;
+        var MAX_TIME_INTERVAL = 15000;
+        var containerWidth = container.offsetWidth;
+        var containerHeight = container.offsetHeight;
+
+        // 检查设备是否支持摄像头
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // 获取摄像头画面并作为背景
+            navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+                video.srcObject = stream;
+                video.onloadedmetadata = function(e) {
+                    video.play();
+                };
+            });
+        }
+
+        // 根据设备陀螺仪的方向，计算小花元素的位置和方向
+        function updateFlowersPosition(alpha, beta, gamma) {
+            for (var i = 0; i < flowers.length; i++) {
+                var flower = flowers[i];
+                var x = flower.offsetLeft + flower.offsetWidth / 2 - containerWidth / 2;
+                var y = flower.offsetTop + flower.offsetHeight / 2 - containerHeight / 2;
+                var dx = -gamma / 90 * 10;
+                var dy = beta / 90 * 10;
+                flower.style.left = Math.min(Math.max(x + dx, 0), containerWidth - flower.offsetWidth) + "px";
+                flower.style.top = Math.min(Math.max(y - dy, 0), containerHeight - flower.offsetHeight) + "px";
+            }
+        }
+
+        // 监听设备陀螺仪的方向变化，并更新小花元素的位置和方向
+        window.addEventListener("deviceorientation", function(event) {
+            updateFlowersPosition(event.alpha, event.beta, event.gamma);
+        }, true);
+
+        // 监听页面点击事件，并计算用户得分
+        container.addEventListener("click", function(event)
+        var currentTime = Date.now();
+        if (currentTime - lastClickTime >= MAX_TIME_INTERVAL) {
+            lastClickTime = currentTime;
+            for (var i = 0; i < flowers.length; i++) {
+                var flower = flowers[i];
+                var x = flower.offsetLeft + flower.offsetWidth / 2;
+                var y = flower.offsetTop + flower.offsetHeight / 2;
+                if (event.pageX >= x - flower.offsetWidth / 2 && event.pageX <= x + flower.offsetWidth / 2 && event.pageY >= y - flower.offsetHeight / 2 && event.pageY <= y + flower.offsetHeight / 2) {
+                    container.removeChild(flower);
+                    flowers.splice(i, 1);
+                    score++;
+                    break;
+                }
+            }
+            updateScore();
+        }
+    });
+
+    // 添加小花元素
+    function addFlower() {
+        var flower = document.createElement("div");
+        flower.className = "flower";
+        flower.style.left = Math.random() * (containerWidth - 50) + "px";
+        flower.style.top = Math.random() * (containerHeight - 50) + "px";
+        container.appendChild(flower);
+        flowers.push(flower);
+    }
+
+    // 更新得分
+    function updateScore() {
+        container.innerHTML = "得分: " + score;
+    }
+
+    // 每15秒随机添加小花元素
+    setInterval(function() {
+        addFlower();
+        setTimeout(function() {
+            for (var i = 0; i < flowers.length; i++) {
+                container.removeChild(flowers[i]);
+            }
+            flowers = [];
+            updateScore();
+        }, MAX_TIME_INTERVAL);
+    }, MAX_TIME_INTERVAL);
+
+    // 初始化
+    updateScore();
+</script>
+</body>
+</html>

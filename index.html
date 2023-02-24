@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>陀螺仪模拟AR效果</title>
+  <style>
+    #video {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100vh;
+      background-color: #141414;
+    }
+    #address {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      width: 40px;
+      height: 60px;
+      border-radius: 100%;
+      background-color: #009900;
+      z-index: 4;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="address"></div>
+  <video id="video" autoplay="autoplay"></video>
+  <script>
+    var video = document.getElementById('video');
+    //默认使用前摄像头，强制使用后置摄像头如下设置
+    var constraints = {video: { facingMode: { exact: "environment" } }};
+    // let constraints = { video: true };
+    navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+      // 旧的浏览器可能没有srcObject
+      window.stream = stream;
+      if ("srcObject" in video) {
+        video.srcObject = stream;
+      } else {
+        // 防止在新的浏览器里使用它，应为它已经不再支持了
+        video.src = window.URL.createObjectURL(stream);
+      }
+      video.onloadedmetadata = function() {
+        video.play();
+      };
+    }).catch(function(err) {
+      console.error(err.name + ": " + err.message);
+    });
+    // http://stackoverflow.com/questions/18112729/calculate-compass-heading-from-deviceorientation-event-api/21829819#21829819
+    // todo 算法来源 https://my.oschina.net/u/2324376/blog/790939
+    function compassHeading(alpha, beta, gamma) {
+      // Convert degrees to radians
+      var alphaRad = alpha * (Math.PI / 180);
+      var betaRad = beta * (Math.PI / 180);
+      var gammaRad = gamma * (Math.PI / 180);
+
+      // Calculate equation components
+      var cA = Math.cos(alphaRad);
+      var sA = Math.sin(alphaRad);
+      // var cB = Math.cos(betaRad);
+      var sB = Math.sin(betaRad);
+      var cG = Math.cos(gammaRad);
+      var sG = Math.sin(gammaRad);
+
+      // Calculate A, B, C rotation components
+      var rA = - cA * sG - sA * sB * cG;
+      var rB = - sA * sG + cA * sB * cG;
+      // var rC = - cB * cG;
+
+      // Calculate compass heading
+      var compassHeading = Math.atan(rA / rB);
+
+      // Convert from half unit circle to whole unit circle
+      if(rB < 0) {
+        compassHeading += Math.PI;
+      }else if(rA < 0) {
+        compassHeading += 2 * Math.PI;
+      }
+
+      // Convert radians to degrees
+      compassHeading *= 180 / Math.PI;
+
+      return compassHeading;
+    }
+    function updateGravity (event) {
+      const that = this;
+      // !根据陀螺仪获取旋转角度，设置人物位置
+      const winWidth = document.documentElement.clientWidth;
+      const itemWidth = parseInt(window.getComputedStyle(address).width);
+      const heading = 360 - compassHeading(event.alpha, event.beta, event.gamma);
+      const angle = 0;
+
+      address.style.transform = 'rotate('+(heading - 90 + angle)+'deg)';
+      // `${(winWidth - itemWidth) * Math.min(180, Math.max(0, (heading + 360 - angle) % 360)) / 180}px`  移动区间 0 - 180
+      address.style.left = `${(winWidth - itemWidth) * ((heading + 360 - angle) % 360) / 180}px`;
+    }
+    window.addEventListener('deviceorientation', updateGravity, false);
+  </script>
+</body>
+</html>

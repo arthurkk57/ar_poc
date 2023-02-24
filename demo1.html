@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击小花游戏</title>
+    <style>
+        #container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: pink;
+        }
+        #score-count {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="score-count">0</div>
+    <script>
+        // 获取容器元素
+        var container = document.getElementById("container");
+        // 初始化得分计数器和分数
+        var score = 0;
+        var scoreCount = document.getElementById("score-count");
+        // 添加10个小花元素到容器中
+        for (var i = 0; i < 10; i++) {
+            var flower = document.createElement("div");
+            flower.className = "flower";
+            flower.style.left = Math.random() * 90 + "%";
+            flower.style.top = Math.random() * 90 + "%";
+            container.appendChild(flower);
+        }
+        // 为所有小花元素添加click事件监听器
+        container.addEventListener("click", function(event) {
+            // 检查事件源是否是小花元素
+            if (event.target.classList.contains("flower")) {
+                // 在得分上增加1
+                score++;
+                scoreCount.innerText = score;
+                // 从容器中删除被点击的小花元素
+                container.removeChild(event.target);
+            }
+        });
+        // 监听设备的方向变化
+        window.addEventListener("deviceorientation", function(event) {
+            // 获取设备的水平方向倾斜角度
+            var tiltLR = event.gamma;
+            // 获取设备的前后倾斜角度
+            var tiltFB = event.beta;
+            // 获取容器的宽度和高度
+            var containerWidth = container.clientWidth;
+            var containerHeight = container.clientHeight;
+            // 遍历所有小花元素，调整它们的位置
+            var flowers = document.querySelectorAll(".flower");
+            for (var i = 0; i < flowers.length; i++) {
+                // 获取小花元素的当前位置
+                var left = parseFloat(flowers[i].style.left);
+                var top = parseFloat(flowers[i].style.top);
+                // 计算小花元素应该移动的距离
+                var dx = tiltLR / 90 * (containerWidth - flowers[i].offsetWidth) / 2;
+                var dy = tiltFB / 90 * (containerHeight - flowers[i].offsetHeight) / 2;
+                // 更新小花元素的位置
+                flowers[i].style.left
+            = Math.min(Math.max(left + dx, 0), containerWidth - flowers[i].offsetWidth) + "px";
+            flowers[i].style.top = Math.min(Math.max(top - dy, 0), containerHeight - flowers[i].offsetHeight) + "px";
+        }
+    });
+    // 每10秒随机生成新的小花元素
+    setInterval(function() {
+        var flower = document.createElement("div");
+        flower.className = "flower";
+        flower.style.left = Math.random() * 90 + "%";
+        flower.style.top = Math.random() * 90 + "%";
+        container.appendChild(flower);
+    }, 10000);
+</script>
+</body>
+</html>

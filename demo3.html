@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AR 游戏</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      #container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        overflow: hidden;
+      }
+      .flower {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-image: url('flower.png'); /* 替换成你自己的图片路径 */
+        background-size: 100% 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script>
+      // 获取容器元素
+      const container = document.getElementById('container');
+      
+      // 初始化摄像头
+      navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: 'environment',
+          width: { ideal: 1920 },
+          height: { ideal: 1080 }
+        }
+      }).then((stream) => {
+        const video = document.createElement('video');
+        video.srcObject = stream;
+        video.autoplay = true;
+        video.playsinline = true;
+        video.addEventListener('loadedmetadata', () => {
+          const aspectRatio = video.videoWidth / video.videoHeight;
+          const width = container.offsetWidth;
+          const height = width / aspectRatio;
+          video.width = width;
+          video.height = height;
+          container.appendChild(video);
+          detectFlowers(video, container);
+        });
+      }).catch((error) => {
+        console.error(error);
+      });
+      
+      // 检测花朵
+      function detectFlowers(video, container) {
+        // 设置摄像头跟踪器
+        const tracker = new tracking.ObjectTracker(['face', 'eye', 'mouth']);
+        tracker.setStepSize(1.7);
+        tracking.track(video, tracker, { camera: true });
+        tracker.on('track', (event) => {
+          container.innerHTML = '';
+          event.data.forEach((rect) => {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = `${rect.x + rect.width / 2}px`;
+            flower.style.top = `${rect.y + rect.height / 2}px`;
+            container.appendChild(flower);
+          });
+        });
+        
+        // 设置定时器，每隔 15 秒钟生成新的花朵
+        setInterval(() => {
+          const flower = document.createElement('div');
+          flower.className = 'flower';
+          flower.style.left = `${Math.random() * 100}%`;
+          flower.style.top = `${Math.random() * 100}%`;
+          container.appendChild(flower);
+        }, 15000);
+      }
+    </script>
+  </body>
+</html>
