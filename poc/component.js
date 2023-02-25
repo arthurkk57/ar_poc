@@ -14,7 +14,7 @@ AFRAME.registerComponent('spawn-flowers', {
             });
             // Add a click event listener to the flower.
             flower.addEventListener('click', function () {
-                alert("clicked");
+                console.log("clicked");
                 flower.setAttribute('position', {
                     x: -2,// Math.random() * 6 - 3,
                     y: -2,// Math.random() * 4 - 2,
