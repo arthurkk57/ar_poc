@@ -1,6 +1,24 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
         const self = this;
+
+        var points = 0;
+        function addPoint() {
+          points++;
+          console.log('Points:', points);
+        }
+
+        setInterval(() => {
+          var flowerModel = document.createElement('a-entity');
+          flowerModel.setAttribute('gltf-model', '#flower-glb');
+          flowerModel.setAttribute('position', Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10));
+          flowerModel.setAttribute('scale', '0.5 0.5 0.5');
+          flowerModel.setAttribute('static-body', '');
+          flowerModel.setAttribute('shadow', '');
+          flowerModel.setAttribute('onclick', 'addPoint()');
+          document.querySelector('a-scene').appendChild(flowerModel);
+        }, 10000);
+/*
         var scoreNum = 0;
         self.interval = setInterval(function () {
             // Create a new flower entity.
@@ -34,6 +52,7 @@ AFRAME.registerComponent('spawn-flowers', {
             // Add the flower to the gameplay entity.
             document.querySelector('#gameplay').appendChild(flower);
         }, 100);
+        */
     },
     remove: function () {
         clearInterval(this.interval);
