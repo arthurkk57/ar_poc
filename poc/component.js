@@ -1,6 +1,7 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
         const self = this;
+        var scoreNum = 0;
         self.interval = setInterval(function () {
             // Create a new flower entity.
             const flower = document.createElement('a-entity');
@@ -12,6 +13,8 @@ AFRAME.registerComponent('spawn-flowers', {
                 y: 2,// Math.random() * 4 - 2,
                 z: -25
             });
+            flower.addEventListener('isPlaying', function () { console.log("isPlaying")} );
+            flower.addEventListener('hasLoaded', function () { console.log("hasLoaded")} );
             // Add a click event listener to the flower.
             flower.addEventListener('click', function () {
                 console.log("clicked");
