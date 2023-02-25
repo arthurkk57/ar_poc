@@ -10,6 +10,7 @@ AFRAME.registerComponent('spawn-flowers', {
         const x = Math.floor(Math.random() * 16) - 8;
         const y = Math.floor(Math.random() * 16) - 8;
         const z = Math.floor(Math.sqrt(10*10 - x*x - y*y));
+        console.log('X: '+x+' Y: '+y+' Z: '+z);
           flowerModel.setAttribute('position', x + ' ' + y + ' ' + z );
           flowerModel.setAttribute('scale', '0.5 0.5 0.5');
         //   flowerModel.setAttribute('static-body', '');
