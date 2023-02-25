@@ -15,9 +15,9 @@ AFRAME.registerComponent('spawn-flowers', {
           flower.setObject3D('mesh', self.flowerModel.clone());
           // Set the flower's position to a random location.
           flower.setAttribute('position', {
-            x: 0,// Math.random() * 6 - 3,
-            y: 1,// Math.random() * 4 - 2,
-            z: -2
+            x: 2,// Math.random() * 6 - 3,
+            y: 2,// Math.random() * 4 - 2,
+            z: -20
           });
           // Add a click event listener to the flower.
           flower.addEventListener('click', function () {
