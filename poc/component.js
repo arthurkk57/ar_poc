@@ -10,8 +10,9 @@ AFRAME.registerComponent('spawn-flowers', {
             flowerModel.setAttribute('gltf-model', '#flower-glb');
             flowerModel.setAttribute('id', 'flower');
             const x = Math.floor(Math.random() * 50) - 25;
+            const y = Math.floor(Math.random() * 25);
             const z = -25;//Math.floor(Math.random() * 50) - 25;
-            const y = Math.floor(Math.sqrt(25 * 25 - x * x - z * z));
+            // const y = Math.floor(Math.sqrt(25 * 25 - x * x - z * z));
             console.log('X: ' + x + ' Y: ' + y + ' Z: ' + z);
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
             flowerModel.setAttribute('scale', '0.5 0.5 0.5');
