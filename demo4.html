@@ -10,7 +10,8 @@
   </head>
   <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs="debugUIEnabled: false">
-      <a-marker preset="hiro">
+      <a-marker id="animated-marker" type="pattern" preset="custom" url="marker.patt"
+            raycaster="objects: .clickable" emitevents="true" cursor="fuse: false; rayOrigin: mouse;" id="markerA">
         <a-camera-static />
       </a-marker>
       <a-entity id="gameplay" spawn-flowers></a-entity>
