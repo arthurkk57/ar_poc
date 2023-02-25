@@ -10,7 +10,7 @@ AFRAME.registerComponent('spawn-flowers', {
             flower.setAttribute('position', {
                 x: 2,// Math.random() * 6 - 3,
                 y: 2,// Math.random() * 4 - 2,
-                z: -20
+                z: -25
             });
             // Add a click event listener to the flower.
             flower.addEventListener('click', function () {
