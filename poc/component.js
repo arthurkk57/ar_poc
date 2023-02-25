@@ -18,7 +18,8 @@ AFRAME.registerComponent('spawn-flowers', {
         //   flowerModel.setAttribute('shadow', '');
           flowerModel.setAttribute('rotation', '0 0 0');
           flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
-          flowerModel.setAttribute('onclick', 'addPoint()');
+          flower.setAttribute('click-handler', '');
+        //   flowerModel.setAttribute('onclick', 'addPoint()');
           document.querySelector('a-scene').appendChild(flowerModel);
         // }, 1000);
 /*
@@ -61,3 +62,13 @@ AFRAME.registerComponent('spawn-flowers', {
         clearInterval(this.interval);
     }
 });
+
+AFRAME.registerComponent('click-handler', {
+    init: function () {
+      this.el.addEventListener('click', function (evt) {
+        // 点击后将实体元素从场景中移除
+        evt.target.remove();
+        console.log('click-handler: click');
+      });
+    }
+  });
