@@ -3,8 +3,8 @@ AFRAME.registerComponent('spawn-flowers', {
         const self = this;
 
         self.interval = setInterval(() => {
-            // const flower = document.querySelector('#flower');
-            // flower.parentNode.removeChild(flower);
+            const flower = document.querySelector('#flower');
+            flower.parentNode.removeChild(flower);
 
             var flowerModel = document.createElement('a-entity');
             flowerModel.setAttribute('gltf-model', '#flower-glb');
