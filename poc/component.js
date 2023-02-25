@@ -17,7 +17,8 @@ AFRAME.registerComponent('spawn-flowers', {
                 // Increment the score by 1.
                 const score = document.querySelector('#score');
                 const currentScore = parseInt(score.getAttribute('value').split(' ')[1]);
-                score.setAttribute('value', 'Score: ' + (currentScore + 1));
+                // score.setAttribute('value', 'Score: ' + (currentScore + 1));
+                score.setAttribute('text', 'value: Score: 9999; color: #F0F0F0');
                 // Remove the flower entity.
                 this.parentNode.removeChild(this);
             });
