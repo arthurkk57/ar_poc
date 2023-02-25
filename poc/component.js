@@ -13,11 +13,11 @@ AFRAME.registerComponent('spawn-flowers', {
                 z: -25
             });
             // Add a click event listener to the flower.
-            flower.addEventListener('click', function () {
+            flower.el.addEventListener('click', function () {
                 alert("clicked");
                 // Increment the score by 1.
                 const score = document.querySelector('#score');
-                const currentScore = parseInt(score.getAttribute('value').split(' ')[1]);
+                const currentScore = parseInt(score.getAttribute('text').value.split(' ')[1]);
                 // score.setAttribute('value', 'Score: ' + (currentScore + 1));
                 score.setAttribute('text', 'value: Score: 9999; color: #F0F0F0');
                 // Remove the flower entity.
@@ -26,7 +26,6 @@ AFRAME.registerComponent('spawn-flowers', {
             // Add the flower to the gameplay entity.
             document.querySelector('#gameplay').appendChild(flower);
         }, 100);
-
     },
     remove: function () {
         clearInterval(this.interval);
