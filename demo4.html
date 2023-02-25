@@ -21,7 +21,7 @@
         init: function() {
           const self = this;
           const loader = new THREE.OBJLoader();
-          loader.load('path/to/flower.obj', function(object) {
+          loader.load('cube.obj', function(object) {
             self.flowerModel = object;
             // Set up a 10-second timer to spawn new flowers.
             self.interval = setInterval(function() {
