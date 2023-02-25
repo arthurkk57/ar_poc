@@ -2,13 +2,13 @@ AFRAME.registerComponent('spawn-flowers', {
     init: function () {
         const self = this;
       
-        // setInterval(() => {
+        setInterval(() => {
           var flowerModel = document.createElement('a-entity');
           flowerModel.setAttribute('gltf-model', '#flower-glb');
         //   flowerModel.setAttribute('position', Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10));
         // const r = 10;
-        const x = Math.floor(Math.random() * 20) - 10;
-        const y = Math.floor(Math.random() * 10);
+        const x = Math.floor(Math.random() * 30) - 15;
+        const y = Math.floor(Math.random() * 15);
         const z = -25;// Math.floor(Math.sqrt(10*10 - x*x - y*y));
         console.log('X: '+x+' Y: '+y+' Z: '+z);
           flowerModel.setAttribute('position', x + ' ' + y + ' ' + z );
@@ -19,7 +19,7 @@ AFRAME.registerComponent('spawn-flowers', {
           flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
         //   flowerModel.setAttribute('onclick', 'addPoint()');
           document.querySelector('a-scene').appendChild(flowerModel);
-        // }, 1000);
+        }, 2000);
 /*
         var scoreNum = 0;
         self.interval = setInterval(function () {
