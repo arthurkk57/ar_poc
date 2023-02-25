@@ -23,7 +23,7 @@
       init: function () {
         const self = this;
         const mtlLoader = new THREE.MTLLoader();
-        mtlLoader.load('flower.mtl', function (materials) {
+        mtlLoader.load('cube.mtl', function (materials) {
           materials.preload();
           const loader = new THREE.OBJLoader();
           objLoader.setMaterials(materials);
@@ -36,7 +36,7 @@
               flower.setObject3D('mesh', self.flowerModel.clone());
               // Set the flower's position to a random location.
               flower.setAttribute('position', {
-                x: 1,// Math.random() * 6 - 3,
+                x: 0,// Math.random() * 6 - 3,
                 y: 1,// Math.random() * 4 - 2,
                 z: -2
               });
