@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AR Flower Game</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@argonjs/argon@4.1.0/dist/argon.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r84/three.min.js"></script>
+</head>
+
+<body>
+    <a-scene embedded arjs='sourceType: webcam;'>
+        <a-assets>
+            <img id="flower" src="https://i.imgur.com/mGj1aB5.png">
+        </a-assets>
+        <a-text id="score" value="Score: 0" position="-1 0 -3"></a-text>
+        <a-entity id="gameplay">
+        </a-entity>
+    </a-scene>
+    <script>
+        AFRAME.registerComponent('spawn-flowers', {
+            init: function () {
+                // Set up a 10-second timer to spawn new flowers.
+                this.interval = setInterval(function () {
+                    // Create a new flower entity.
+                    const flower = document.createElement('a-entity');
+                    flower.setAttribute('geometry', { primitive: 'plane', height: 0.1, width: 0.1 });
+                    flower.setAttribute('material', { src: '#flower' });
+                    // Set the flower's position to a random location.
+                    flower.setAttribute('position', {
+                        x: Math.random() * 6 - 3,
+                        y: Math.random() * 4 - 2,
+                        z: -4
+                    });
+                    // Add a click event listener to the flower.
+                    flower.addEventListener('click', function () {
+                        // Increment the score by 1.
+                        const score = document.querySelector('#score');
+                        const currentScore = parseInt(score.getAttribute('value').split(' ')[1]);
+                        score.setAttribute('value', 'Score: ' + (currentScore + 1));
+                        // Remove the flower entity.
+                        this.parentNode.removeChild(this);
+                    });
+                    // Add the flower to the gameplay entity.
+                    document.querySelector('#gameplay').appendChild(flower);
+                }, 10000);
+            },
+            remove: function () {
+                clearInterval(this.interval);
+            }
+        });
+    </script>
+</body>
+
+</html>
