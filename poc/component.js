@@ -11,7 +11,8 @@ AFRAME.registerComponent('spawn-flowers', {
         setInterval(() => {
           var flowerModel = document.createElement('a-entity');
           flowerModel.setAttribute('gltf-model', '#flower-glb');
-          flowerModel.setAttribute('position', Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10));
+        //   flowerModel.setAttribute('position', Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10));
+          flowerModel.setAttribute('position', '2 2 -25');
           flowerModel.setAttribute('scale', '0.5 0.5 0.5');
           flowerModel.setAttribute('static-body', '');
           flowerModel.setAttribute('shadow', '');
