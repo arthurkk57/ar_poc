@@ -1,30 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>AR Flower Game</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.3.0/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.rawgit.com/mrdoob/three.js/r127/examples/js/loaders/OBJLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ar.js/aframe/build/aframe-ar.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="debugUIEnabled: false">
-      <a-marker preset="hiro">
-        <a-camera-static />
-      </a-marker>
-      <a-entity id="gameplay" spawn-flowers></a-entity>
-      <a-entity id="score" text="value: Score: 0; color: #000000; position: 0 0 -2"></a-entity>
-    </a-scene>
-    <script>
-      AFRAME.registerComponent('spawn-flowers', {
-        init: function() {
-          const self = this;
+
+<head>
+  <meta charset="utf-8">
+  <title>AR Flower Game</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.3.0/dist/aframe-extras.min.js"></script>
+  <script src="https://cdn.rawgit.com/mrdoob/three.js/r127/examples/js/loaders/OBJLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ar.js/aframe/build/aframe-ar.js"></script>
+</head>
+
+<body style="margin: 0; overflow: hidden;">
+  <a-scene embedded arjs="debugUIEnabled: false">
+    <a-marker preset="hiro">
+      <a-camera-static />
+    </a-marker>
+    <a-entity id="gameplay" spawn-flowers></a-entity>
+    <a-entity id="score" text="value: Score: 0; color: #000000; position: 0 0 -2"></a-entity>
+  </a-scene>
+  <script>
+    AFRAME.registerComponent('spawn-flowers', {
+      init: function () {
+        const self = this;
+        const mtlLoader = new THREE.MTLLoader();
+        mtlLoader.load('flower.mtl', function (materials) {
+          materials.preload();
           const loader = new THREE.OBJLoader();
-          loader.load('cube.obj', function(object) {
+          objLoader.setMaterials(materials);
+          loader.load('cube.obj', function (object) {
             self.flowerModel = object;
             // Set up a 10-second timer to spawn new flowers.
-            self.interval = setInterval(function() {
+            self.interval = setInterval(function () {
               // Create a new flower entity.
               const flower = document.createElement('a-entity');
               flower.setObject3D('mesh', self.flowerModel.clone());
@@ -35,7 +41,7 @@
                 z: -4
               });
               // Add a click event listener to the flower.
-              flower.addEventListener('click', function() {
+              flower.addEventListener('click', function () {
                 // Increment the score by 1.
                 const score = document.querySelector('#score');
                 const currentScore = parseInt(score.getAttribute('value').split(' ')[1]);
@@ -47,11 +53,13 @@
               document.querySelector('#gameplay').appendChild(flower);
             }, 10000);
           });
-        },
-        remove: function() {
-          clearInterval(this.interval);
-        }
-      });
-    </script>
-  </body>
+        });
+      },
+      remove: function () {
+        clearInterval(this.interval);
+      }
+    });
+  </script>
+</body>
+
 </html>
