@@ -7,9 +7,9 @@ AFRAME.registerComponent('spawn-flowers', {
           flowerModel.setAttribute('gltf-model', '#flower-glb');
         //   flowerModel.setAttribute('position', Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10));
         // const r = 10;
-        const x = Math.floor(Math.random() * 16) - 8;
-        const y = Math.floor(Math.random() * 16) - 8;
-        const z = Math.floor(Math.sqrt(10*10 - x*x - y*y));
+        const x = Math.floor(Math.random() * 4) - 8;
+        const y = Math.floor(Math.random() * 4);
+        const z = -25;// Math.floor(Math.sqrt(10*10 - x*x - y*y));
         console.log('X: '+x+' Y: '+y+' Z: '+z);
           flowerModel.setAttribute('position', x + ' ' + y + ' ' + z );
           flowerModel.setAttribute('scale', '0.5 0.5 0.5');
