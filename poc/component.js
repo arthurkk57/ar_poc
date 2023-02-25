@@ -6,7 +6,11 @@ AFRAME.registerComponent('spawn-flowers', {
           var flowerModel = document.createElement('a-entity');
           flowerModel.setAttribute('gltf-model', '#flower-glb');
         //   flowerModel.setAttribute('position', Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10));
-          flowerModel.setAttribute('position', '2 2 -25');
+        // const r = 10;
+        const x = Math.floor(Math.random() * 16) - 8;
+        const y = Math.floor(Math.random() * 16) - 8;
+        const z = Math.floor(Math.sqrt(10*10 - x*x - y*y));
+          flowerModel.setAttribute('position', x + ' ' + y + ' ' + z );
           flowerModel.setAttribute('scale', '0.5 0.5 0.5');
         //   flowerModel.setAttribute('static-body', '');
         //   flowerModel.setAttribute('shadow', '');
