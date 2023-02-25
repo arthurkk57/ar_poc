@@ -1,24 +1,17 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
         const self = this;
-
-        var points = 0;
-        function addPoint() {
-          points++;
-          console.log('Points:', points);
-        }
       
         // setInterval(() => {
           var flowerModel = document.createElement('a-entity');
           flowerModel.setAttribute('gltf-model', '#flower-glb');
         //   flowerModel.setAttribute('position', Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10));
-          flowerModel.setAttribute('position', '2 2 -25');
-          flowerModel.setAttribute('scale', '0.5 0.5 0.5');
+          flowerModel.setAttribute('position', '5 5 -5');
+          flowerModel.setAttribute('scale', '0.1 0.1 0.1');
         //   flowerModel.setAttribute('static-body', '');
         //   flowerModel.setAttribute('shadow', '');
           flowerModel.setAttribute('rotation', '0 0 0');
           flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
-          flower.setAttribute('click-handler', '');
         //   flowerModel.setAttribute('onclick', 'addPoint()');
           document.querySelector('a-scene').appendChild(flowerModel);
         // }, 1000);
@@ -62,13 +55,3 @@ AFRAME.registerComponent('spawn-flowers', {
         clearInterval(this.interval);
     }
 });
-
-AFRAME.registerComponent('click-handler', {
-    init: function () {
-      this.el.addEventListener('click', function (evt) {
-        // 点击后将实体元素从场景中移除
-        evt.target.remove();
-        console.log('click-handler: click');
-      });
-    }
-  });
