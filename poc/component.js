@@ -13,9 +13,9 @@ AFRAME.registerComponent('spawn-flowers', {
           flowerModel.setAttribute('gltf-model', '#flower-glb');
         //   flowerModel.setAttribute('position', Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10) + ' ' + Math.floor(Math.random() * 10));
           flowerModel.setAttribute('position', '2 2 -25');
-          flowerModel.setAttribute('scale', '0.5 0.5 0.5');
-          flowerModel.setAttribute('static-body', '');
-          flowerModel.setAttribute('shadow', '');
+        //   flowerModel.setAttribute('scale', '0.5 0.5 0.5');
+        //   flowerModel.setAttribute('static-body', '');
+        //   flowerModel.setAttribute('shadow', '');
           flowerModel.setAttribute('onclick', 'addPoint()');
           document.querySelector('a-scene').appendChild(flowerModel);
         // }, 1000);
