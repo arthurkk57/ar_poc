@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 7');
+        console.log('## Version 8');
         const self = this;
 
         self.interval = setInterval(() => {
@@ -15,6 +15,7 @@ AFRAME.registerComponent('spawn-flowers', {
             flowerModel.setAttribute('id', id);
             setTimeout(function () {
                 const flower = document.getElementById(`#${id}`); // 通过 ID 获取花的实体
+                console.log('getElementById: ' + id);
                 if (flower) {
                     console.log('removeChild: ' + id);
                   flower.parentNode.removeChild(flower); // 移除花的实体
