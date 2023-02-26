@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 2');
+        console.log('## Version 4');
         const self = this;
 
         self.interval = setInterval(() => {
@@ -8,21 +8,21 @@ AFRAME.registerComponent('spawn-flowers', {
             // flower.parentNode.removeChild(flower);
 
             var flowerModel = document.createElement('a-entity');
-            flowerModel.setAttribute('gltf-model', '#flower-glb');
-            flowerModel.setAttribute('id', 'flower');
+            const id = Math.random().toString(36).substring(7);
+            const modelId = Math.floor(Math.random() * 3) + 1;
+            flowerModel.setAttribute('gltf-model', '#flower-'+modelId);
+            flowerModel.setAttribute('id', id);
+            setInterval(() => {
+
+            }, 5000);
             const r = 50;
             const y = Math.random() * 25;
             const x = Math.random() * 2 * r  - r;
-
-            // const xPre = Math.random() < 0.5 ? -1 : 1;
-            // const x = xPre * (Math.random() * 30 + 20);
-            
             const zPre = Math.random() < 0.5 ? -1 : 1;
             const z = zPre * (Math.sqrt(r*r - x*x));
-            //-25;//Math.floor(Math.random() * 50) - 25;
-            // const y = Math.floor(Math.sqrt(25 * 25 - x * x - z * z));
             console.log('X: ' + x + ' Y: ' + y + ' Z: ' + z);
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
+
             flowerModel.setAttribute('scale', '0.5 0.5 0.5');
             //   flowerModel.setAttribute('static-body', '');
             flowerModel.setAttribute('rotation', '0 0 0');

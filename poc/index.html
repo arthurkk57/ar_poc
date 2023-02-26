@@ -20,7 +20,11 @@
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs="debugUIEnabled: false">
         <a-assets>
-            <a-asset-item id="flower-glb" src="Flower.glb"></a-asset-item>
+            <!-- <a-asset-item id="flower-glb" src="Flower.glb"></a-asset-item> -->
+            <a-asset-item id="flower-1" src="Flower1AR.glb"></a-asset-item>
+            <a-asset-item id="flower-2" src="Flower2AR.glb"></a-asset-item>
+            <a-asset-item id="flower-3" src="Flower3AR.glb"></a-asset-item>
+            <a-asset-item id="flower-4" src="Flower4AR.glb"></a-asset-item>
           </a-assets>
         <a-marker preset="hiro">
             <a-camera-static />
@@ -29,7 +33,7 @@
             <!-- <a-entity obj-model="obj: url(cube.obj); mtl: url(cube.mtl)" position="0 1 -15"></a-entity> -->
         </a-entity>
         <!-- <a-entity obj-model="obj: url(cube.obj); mtl: url(cube.mtl)" position="0 1 -15"></a-entity> -->
-        <a-entity id="score" text="value: Version: 3; color: #F0F0F0" position="0 0 -4"></a-entity>
+        <a-entity id="score" text="value: Version: 4; color: #F0F0F0" position="0 0 -4"></a-entity>
     </a-scene>
 </body>
 
