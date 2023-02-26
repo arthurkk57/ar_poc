@@ -11,6 +11,7 @@ AFRAME.registerComponent('spawn-flowers', {
             const id = Math.random().toString(36).substring(7);
             const modelId = Math.floor(Math.random() * 3) + 1;
             flowerModel.setAttribute('gltf-model', '#flower-'+modelId);
+            console.log('modelId: ' +modelId);
             flowerModel.setAttribute('id', id);
             setInterval(() => {
 
@@ -20,7 +21,7 @@ AFRAME.registerComponent('spawn-flowers', {
             const x = Math.random() * 2 * r  - r;
             const zPre = Math.random() < 0.5 ? -1 : 1;
             const z = zPre * (Math.sqrt(r*r - x*x));
-            console.log('X: ' + x + ' Y: ' + y + ' Z: ' + z);
+            // console.log('X: ' + x + ' Y: ' + y + ' Z: ' + z);
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
 
             flowerModel.setAttribute('scale', '0.5 0.5 0.5');
