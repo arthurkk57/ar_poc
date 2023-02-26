@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 4');
+        console.log('## Version 5');
         const self = this;
 
         self.interval = setInterval(() => {
@@ -11,7 +11,7 @@ AFRAME.registerComponent('spawn-flowers', {
             const id = Math.random().toString(36).substring(7);
             const modelId = Math.floor(Math.random() * 3) + 1;
             flowerModel.setAttribute('gltf-model', '#flower-'+modelId);
-            console.log('modelId: ' +modelId);
+            console.log('modelId: ' + modelId);
             flowerModel.setAttribute('id', id);
             setInterval(() => {
 
