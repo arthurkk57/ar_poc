@@ -9,9 +9,12 @@ AFRAME.registerComponent('spawn-flowers', {
             var flowerModel = document.createElement('a-entity');
             flowerModel.setAttribute('gltf-model', '#flower-glb');
             flowerModel.setAttribute('id', 'flower');
-            const x = Math.floor(Math.random() * 50) - 25;
-            const y = Math.floor(Math.random() * 25);
-            const z = -25;//Math.floor(Math.random() * 50) - 25;
+            const xPre = Math.random() * 2 - 1;
+            const x = xPre * (Math.random() * 30 + 20);
+            const y = Math.random() * 15 + 10;
+            const zPre = Math.random() * 2 - 1;
+            const z = zPre * (Math.random() * 30 + 20);
+            //-25;//Math.floor(Math.random() * 50) - 25;
             // const y = Math.floor(Math.sqrt(25 * 25 - x * x - z * z));
             console.log('X: ' + x + ' Y: ' + y + ' Z: ' + z);
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
