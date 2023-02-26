@@ -9,24 +9,24 @@ AFRAME.registerComponent('spawn-flowers', {
 
             var flowerModel = document.createElement('a-entity');
             const modelId = Math.floor(Math.random() * 3) + 1;
-            flowerModel.setAttribute('gltf-model', '#flower-'+modelId);
+            flowerModel.setAttribute('gltf-model', '#flower-' + modelId);
             console.log('modelId: ' + modelId);
             const id = Math.random().toString(36).substring(7);
             flowerModel.setAttribute('id', id);
             setTimeout(function () {
                 const flower = document.getElementById(`${id}`); // 通过 ID 获取花的实体
-                console.log('getElementById: ' + id);
+                // console.log('getElementById: ' + id);
                 if (flower) {
-                    console.log('removeChild: ' + id);
-                  flower.parentNode.removeChild(flower); // 移除花的实体
+                    // console.log('removeChild: ' + id);
+                    flower.parentNode.removeChild(flower); // 移除花的实体
                 }
-              }, 5000);
+            }, 5000);
 
             const r = 50;
             const y = Math.random() * 25;
-            const x = Math.random() * 2 * r  - r;
+            const x = Math.random() * 2 * r - r;
             const zPre = Math.random() < 0.5 ? -1 : 1;
-            const z = zPre * (Math.sqrt(r*r - x*x));
+            const z = zPre * (Math.sqrt(r * r - x * x));
             // console.log('X: ' + x + ' Y: ' + y + ' Z: ' + z);
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
 
