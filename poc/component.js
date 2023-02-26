@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 5');
+        console.log('## Version 6');
         const self = this;
 
         self.interval = setInterval(() => {
@@ -8,14 +8,18 @@ AFRAME.registerComponent('spawn-flowers', {
             // flower.parentNode.removeChild(flower);
 
             var flowerModel = document.createElement('a-entity');
-            const id = Math.random().toString(36).substring(7);
             const modelId = Math.floor(Math.random() * 3) + 1;
             flowerModel.setAttribute('gltf-model', '#flower-'+modelId);
             console.log('modelId: ' + modelId);
+            const id = Math.random().toString(36).substring(7);
             flowerModel.setAttribute('id', id);
-            setInterval(() => {
+            setTimeout(function () {
+                const flower = document.getElementById(`#${id}`); // 通过 ID 获取花的实体
+                if (flower) {
+                  flower.parentNode.removeChild(flower); // 移除花的实体
+                }
+              }, 5000);
 
-            }, 5000);
             const r = 50;
             const y = Math.random() * 25;
             const x = Math.random() * 2 * r  - r;
