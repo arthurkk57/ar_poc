@@ -30,7 +30,7 @@ AFRAME.registerComponent('spawn-flowers', {
             // console.log('X: ' + x + ' Y: ' + y + ' Z: ' + z);
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
 
-            flowerModel.setAttribute('scale', '0.5 0.5 0.5');
+            flowerModel.setAttribute('scale', '0.8 0.8 0.8');
             //   flowerModel.setAttribute('static-body', '');
             flowerModel.setAttribute('rotation', '0 0 0');
             flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
