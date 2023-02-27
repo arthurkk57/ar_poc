@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 10');
+        console.log('## Version 11');
         const self = this;
 
         self.interval = setInterval(() => {
