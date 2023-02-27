@@ -35,7 +35,7 @@ AFRAME.registerComponent('spawn-flowers', {
             flowerModel.setAttribute('rotation', '0 0 0');
             flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
             document.querySelector('a-scene').appendChild(flowerModel);
-        }, 5000);
+        }, 500);
         /*
                 var scoreNum = 0;
                 self.interval = setInterval(function () {
