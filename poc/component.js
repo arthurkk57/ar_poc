@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 23');
+        console.log('## Version 24');
         const self = this;
 
     //     var takePhotoButton = document.querySelector("#takePhotoBtn");
@@ -50,9 +50,11 @@ AFRAME.registerComponent('spawn-flowers', {
             document.querySelector('a-scene').appendChild(flowerModel);
         }, 300);
 
-        // self.interval2 = setInterval(() => {
-            
-        // }, 300);
+        var index = 0;
+        self.interval2 = setInterval(() => {
+            const gap = 10;
+
+        }, 300);
     },
     remove: function () {
         clearInterval(this.interval);
