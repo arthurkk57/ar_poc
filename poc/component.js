@@ -24,7 +24,7 @@ AFRAME.registerComponent('spawn-flowers', {
                 flowerModel.setAttribute('id', id);
                 var x = flowPosition.x * flowerGap;
                 var y = -floorGap;
-                var z = flowPosition.z * flowerGap * flowerGap - gap;
+                var z = flowPosition.z * flowerGap - gap;
                 var temp = setInterval(() => {
                     if (y <= floorGap) {
                         clearInterval(temp);
