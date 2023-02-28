@@ -1,19 +1,19 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 21');
+        console.log('## Version 22');
         const self = this;
 
-        var takePhotoButton = document.querySelector("#takePhotoBtn");
-      takePhotoButton.addEventListener("click", function () {
-        var canvas = document.querySelector("canvas");
-        var dataURL = canvas.toDataURL("image/png");
-        var link = document.createElement("a");
-        link.download = "ar_poc_screenshot.png";
-        link.href = dataURL;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
+    //     var takePhotoButton = document.querySelector("#takePhotoBtn");
+    //   takePhotoButton.addEventListener("click", function () {
+    //     var canvas = document.querySelector("canvas");
+    //     var dataURL = canvas.toDataURL("image/png");
+    //     var link = document.createElement("a");
+    //     link.download = "ar_poc_screenshot.png";
+    //     link.href = dataURL;
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     document.body.removeChild(link);
+    //   });
 
         self.interval = setInterval(() => {
             // const flower = document.querySelector('#flower');
@@ -49,13 +49,13 @@ AFRAME.registerComponent('spawn-flowers', {
             document.querySelector('a-scene').appendChild(flowerModel);
         }, 300);
 
-        self.interval2 = setInterval(() => {
+        // self.interval2 = setInterval(() => {
             
-        }, 300);
+        // }, 300);
     },
     remove: function () {
         clearInterval(this.interval);
-        clearInterval(this.interval2);
+        // clearInterval(this.interval2);
     }
 });
 
