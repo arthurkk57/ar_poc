@@ -44,14 +44,16 @@ AFRAME.registerComponent('spawn-flowers', {
         }).catch(err => {
             // Do something for an error here
         });
-        document.querySelector('#take-photo').addEventListener('click', function() {
-            html2canvas(document.body).then(function(canvas) {
-                document.body.appendChild(canvas);
-            });
-          });
     },
     remove: function () {
         clearInterval(this.interval);
     }
 });
 
+function handleButtonClick() {
+    html2canvas(document.body).then(function (canvas) {
+        var imageData = canvas.toDataURL('image/png');
+        // 在这里，你可以将 imageData 用于显示或上传到服务器
+        document.body.appendChild(imageData);
+    });
+}

@@ -40,7 +40,7 @@
     <script
         src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@3.5.0/dist/tf-backend-webgl.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tracking/build/tracking-min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/html2canvas@1.4.1/dist/html2canvas.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="component.js"></script>
 </head>
 
@@ -61,7 +61,7 @@
         <a-entity id="score" text="value: Version: 36; color: #F0F0F0" position="0 0 -4"></a-entity>
     </a-scene>
 
-    <button id="take-photo"></button>
+    <button id="take-photo" onclick="handleButtonClick()"></button>
 </body>
 
 </html>
