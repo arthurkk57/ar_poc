@@ -1,8 +1,8 @@
-import floorPic from 'assets/floorPic.json' assert { type: 'JSON' };
+// import floorPic from 'assets/floorPic.json' assert { type: 'JSON' };
 
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 31');
+        console.log('## Version 32');
         const self = this;
 
         //     var takePhotoButton = document.querySelector("#takePhotoBtn");
@@ -49,39 +49,50 @@ AFRAME.registerComponent('spawn-flowers', {
                     document.querySelector('a-scene').appendChild(flowerModel);
                 }, 300);
         */
-       var floorGap = -50;
-        var index = 0;
-        self.interval2 = setInterval(() => {
-            if (index >= floorPic.length) {
-                return;
-            }
-            var flowPosition = floorPic[index];
-            const gap = 20;
-            var flowerModel = document.createElement('a-entity');
-            const modelId = Math.floor(Math.random() * 4) + 1;
-            flowerModel.setAttribute('gltf-model', '#flower-' + modelId);
 
-            const id = Math.random().toString(36).substring(7);
-            flowerModel.setAttribute('id', id);
-            var x = flowPosition.x * 3;
-            var y = -floorGap;
-            var z = flowPosition.z - gap;
-            var temp = setInterval(() => {
-                if (y <= floorGap) {
-                    clearInterval(temp);
+        // Replace ./data.json with your JSON feed
+        fetch('assets/floorPic.json').then(response => {
+            return response.json();
+        }).then(floorPic => {
+            // Work with JSON data here
+            console.log(floorPic);
+            var floorGap = -50;
+            var index = 0;
+            self.interval2 = setInterval(() => {
+                if (index >= floorPic.length) {
                     return;
                 }
-                y = y - 0.1;
+                var flowPosition = floorPic[index];
+                const gap = 20;
+                var flowerModel = document.createElement('a-entity');
+                const modelId = Math.floor(Math.random() * 4) + 1;
+                flowerModel.setAttribute('gltf-model', '#flower-' + modelId);
+
+                const id = Math.random().toString(36).substring(7);
+                flowerModel.setAttribute('id', id);
+                var x = flowPosition.x * 3;
+                var y = -floorGap;
+                var z = flowPosition.z - gap;
+                var temp = setInterval(() => {
+                    if (y <= floorGap) {
+                        clearInterval(temp);
+                        return;
+                    }
+                    y = y - 0.1;
+                    flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
+                }, 50);
                 flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
-            }, 50);
-            flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
-            flowerModel.setAttribute('scale', '0.8 0.8 0.8');
-            flowerModel.setAttribute('material', 'opacity:1');
-            flowerModel.setAttribute('rotation', '0 0 0');
-            flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
-            document.querySelector('a-scene').appendChild(flowerModel);
-            index = index + 1;
-        }, 300);
+                flowerModel.setAttribute('scale', '0.8 0.8 0.8');
+                flowerModel.setAttribute('material', 'opacity:1');
+                flowerModel.setAttribute('rotation', '0 0 0');
+                flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
+                document.querySelector('a-scene').appendChild(flowerModel);
+                index = index + 1;
+            }, 300);
+        }).catch(err => {
+            // Do something for an error here
+        });
+
     },
     remove: function () {
         clearInterval(this.interval);
