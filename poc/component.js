@@ -1,13 +1,18 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 20');
+        console.log('## Version 21');
         const self = this;
 
         var takePhotoButton = document.querySelector("#takePhotoBtn");
       takePhotoButton.addEventListener("click", function () {
-        html2canvas(document.body).then(function(canvas) {
-            document.body.appendChild(canvas);
-        });
+        var canvas = document.querySelector("canvas");
+        var dataURL = canvas.toDataURL("image/png");
+        var link = document.createElement("a");
+        link.download = "ar_poc_screenshot.png";
+        link.href = dataURL;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       });
 
         self.interval = setInterval(() => {
