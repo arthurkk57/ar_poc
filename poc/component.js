@@ -62,7 +62,7 @@ AFRAME.registerComponent('spawn-flowers', {
             setInterval(() => {
                 y = y-1;
                 flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
-            }, 500);
+            }, 100);
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
             flowerModel.setAttribute('scale', '0.8 0.8 0.8');
             flowerModel.setAttribute('material', 'opacity:1');
