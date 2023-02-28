@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 18');
+        console.log('## Version 19');
         const self = this;
 
         var takePhotoButton = document.querySelector("#takePhotoBtn");
@@ -17,7 +17,7 @@ AFRAME.registerComponent('spawn-flowers', {
             var flowerModel = document.createElement('a-entity');
             const modelId = Math.floor(Math.random() * 4) + 1;
             flowerModel.setAttribute('gltf-model', '#flower-' + modelId);
-            console.log('modelId: ' + modelId);
+            // console.log('modelId: ' + modelId);
             const id = Math.random().toString(36).substring(7);
             flowerModel.setAttribute('id', id);
             setTimeout(function () {
