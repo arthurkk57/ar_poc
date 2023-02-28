@@ -2,7 +2,7 @@
 
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 33');
+        console.log('## Version 34');
         const self = this;
 
         //     var takePhotoButton = document.querySelector("#takePhotoBtn");
@@ -73,13 +73,13 @@ AFRAME.registerComponent('spawn-flowers', {
                 flowerModel.setAttribute('id', id);
                 var x = flowPosition.x * flowerGap;
                 var y = -floorGap;
-                var z = flowPosition.z * flowerGap - gap;
+                var z = flowPosition.z * flowerGap*3 - gap;
                 var temp = setInterval(() => {
                     if (y <= floorGap) {
                         clearInterval(temp);
                         return;
                     }
-                    y = y - 0.25;
+                    y = y - 0.5;
                     flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
                 }, 50);
                 flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
