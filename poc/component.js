@@ -50,10 +50,10 @@ AFRAME.registerComponent('spawn-flowers', {
     }
 });
 
-function handleButtonClick() {
-    html2canvas(document.body).then(function (canvas) {
-        var imageData = canvas.toDataURL('image/png');
-        // 在这里，你可以将 imageData 用于显示或上传到服务器
-        document.body.appendChild(imageData);
-    });
-}
+// function handleButtonClick() {
+//     html2canvas(document.body).then(function (canvas) {
+//         var imageData = canvas.toDataURL('image/png');
+//         // 在这里，你可以将 imageData 用于显示或上传到服务器
+//         document.body.appendChild(imageData);
+//     });
+// }
