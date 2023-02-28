@@ -44,7 +44,11 @@ AFRAME.registerComponent('spawn-flowers', {
         }).catch(err => {
             // Do something for an error here
         });
-
+        document.querySelector('#take-photo').addEventListener('click', function() {
+            html2canvas(document.body).then(function(canvas) {
+                document.body.appendChild(canvas);
+            });
+          });
     },
     remove: function () {
         clearInterval(this.interval);
