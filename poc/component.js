@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 25');
+        console.log('## Version 26');
         const self = this;
 
     //     var takePhotoButton = document.querySelector("#takePhotoBtn");
@@ -39,12 +39,9 @@ AFRAME.registerComponent('spawn-flowers', {
             const x = Math.random() * 2 * r - r;
             const zPre = Math.random() < 0.5 ? -1 : 1;
             const z = zPre * (Math.sqrt(r * r - x * x));
-            // console.log('X: ' + x + ' Y: ' + y + ' Z: ' + z);
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
-
             flowerModel.setAttribute('scale', '0.8 0.8 0.8');
             flowerModel.setAttribute('material', 'opacity:1');
-            //   flowerModel.setAttribute('static-body', '');
             flowerModel.setAttribute('rotation', '0 0 0');
             flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
             document.querySelector('a-scene').appendChild(flowerModel);
@@ -52,13 +49,31 @@ AFRAME.registerComponent('spawn-flowers', {
 
         var index = 0;
         self.interval2 = setInterval(() => {
-            const gap = 10;
+            const gap = 20;
+            var flowerModel = document.createElement('a-entity');
+            const modelId = Math.floor(Math.random() * 4) + 1;
+            flowerModel.setAttribute('gltf-model', '#flower-' + modelId);
 
+            const id = Math.random().toString(36).substring(7);
+            flowerModel.setAttribute('id', id);
+            var x = index * 1;
+            var y = 0;
+            var z = 0 + gap;
+            setInterval(() => {
+                y = y-1;
+                flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
+            }, 500);
+            flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
+            flowerModel.setAttribute('scale', '0.8 0.8 0.8');
+            flowerModel.setAttribute('material', 'opacity:1');
+            flowerModel.setAttribute('rotation', '0 0 0');
+            flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
+            document.querySelector('a-scene').appendChild(flowerModel);
         }, 300);
     },
     remove: function () {
         clearInterval(this.interval);
-        // clearInterval(this.interval2);
+        clearInterval(this.interval2);
     }
 });
 
