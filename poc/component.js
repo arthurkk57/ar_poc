@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 27');
+        console.log('## Version 28');
         const self = this;
 
     //     var takePhotoButton = document.querySelector("#takePhotoBtn");
@@ -48,7 +48,7 @@ AFRAME.registerComponent('spawn-flowers', {
         }, 300);
 */
         var index = 0;
-        // self.interval2 = setInterval(() => {
+        self.interval2 = setInterval(() => {
             const gap = 20;
             var flowerModel = document.createElement('a-entity');
             const modelId = Math.floor(Math.random() * 4) + 1;
@@ -62,14 +62,15 @@ AFRAME.registerComponent('spawn-flowers', {
             setInterval(() => {
                 y = y-1;
                 flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
-            }, 100);
+            }, 50);
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
             flowerModel.setAttribute('scale', '0.8 0.8 0.8');
             flowerModel.setAttribute('material', 'opacity:1');
             flowerModel.setAttribute('rotation', '0 0 0');
             flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
             document.querySelector('a-scene').appendChild(flowerModel);
-        // }, 300);
+            index = index + 1;
+        }, 300);
     },
     remove: function () {
         clearInterval(this.interval);
