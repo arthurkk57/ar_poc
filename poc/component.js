@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 35');
+        console.log('## Version 36');
         const self = this;
         fetch('assets/floorPic.json').then(response => {
             return response.json();
