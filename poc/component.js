@@ -2,7 +2,7 @@
 
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 32');
+        console.log('## Version 33');
         const self = this;
 
         //     var takePhotoButton = document.querySelector("#takePhotoBtn");
@@ -57,6 +57,7 @@ AFRAME.registerComponent('spawn-flowers', {
             // Work with JSON data here
             console.log(floorPic);
             var floorGap = -50;
+            const flowerGap = 3;
             var index = 0;
             self.interval2 = setInterval(() => {
                 if (index >= floorPic.length) {
@@ -70,15 +71,15 @@ AFRAME.registerComponent('spawn-flowers', {
 
                 const id = Math.random().toString(36).substring(7);
                 flowerModel.setAttribute('id', id);
-                var x = flowPosition.x * 3;
+                var x = flowPosition.x * flowerGap;
                 var y = -floorGap;
-                var z = flowPosition.z - gap;
+                var z = flowPosition.z * flowerGap - gap;
                 var temp = setInterval(() => {
                     if (y <= floorGap) {
                         clearInterval(temp);
                         return;
                     }
-                    y = y - 0.1;
+                    y = y - 0.25;
                     flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
                 }, 50);
                 flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
