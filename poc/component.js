@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 19');
+        console.log('## Version 20');
         const self = this;
 
         var takePhotoButton = document.querySelector("#takePhotoBtn");
@@ -43,9 +43,14 @@ AFRAME.registerComponent('spawn-flowers', {
             flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
             document.querySelector('a-scene').appendChild(flowerModel);
         }, 300);
+
+        self.interval2 = setInterval(() => {
+            
+        }, 300);
     },
     remove: function () {
         clearInterval(this.interval);
+        clearInterval(this.interval2);
     }
 });
 
