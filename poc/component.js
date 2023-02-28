@@ -8,7 +8,7 @@ AFRAME.registerComponent('spawn-flowers', {
             // flower.parentNode.removeChild(flower);
 
             var flowerModel = document.createElement('a-entity');
-            const modelId = Math.floor(Math.random() * 3) + 1;
+            const modelId = Math.floor(Math.random() * 4) + 1;
             flowerModel.setAttribute('gltf-model', '#flower-' + modelId);
             console.log('modelId: ' + modelId);
             const id = Math.random().toString(36).substring(7);
