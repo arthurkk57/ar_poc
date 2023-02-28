@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 24');
+        console.log('## Version 25');
         const self = this;
 
     //     var takePhotoButton = document.querySelector("#takePhotoBtn");
@@ -43,7 +43,7 @@ AFRAME.registerComponent('spawn-flowers', {
             flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
 
             flowerModel.setAttribute('scale', '0.8 0.8 0.8');
-            flowerModel.setAttribute('transparent', 'false');
+            flowerModel.setAttribute('material', 'opacity:1');
             //   flowerModel.setAttribute('static-body', '');
             flowerModel.setAttribute('rotation', '0 0 0');
             flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
