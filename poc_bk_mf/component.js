@@ -13,6 +13,7 @@ AFRAME.registerComponent('spawn-flowers', {
             console.log('modelId: ' + modelId);
             const id = Math.random().toString(36).substring(7);
             flowerModel.setAttribute('id', id);
+            /*
             setTimeout(function () {
                 const flower = document.getElementById(`${id}`); // 通过 ID 获取花的实体
                 // console.log('getElementById: ' + id);
@@ -21,7 +22,7 @@ AFRAME.registerComponent('spawn-flowers', {
                     flower.parentNode.removeChild(flower); // 移除花的实体
                 }
             }, 5000);
-
+*/
             const r = 50;
             const y = Math.random() * 25;
             const x = Math.random() * 2 * r - r;
