@@ -1,11 +1,11 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 44');
+        console.log('## Version 45');
         const self = this;
 
         const fallSpeed = 0.2;
         const fallFrequency = 20;
-        const r = 50;
+        const r = 100;
         const ceiling = 50;
         const floor = -50;
         const pplR = 10;
@@ -48,7 +48,6 @@ AFRAME.registerComponent('spawn-flowers', {
         }).then(floorPic => {
             // Work with JSON data here
             // console.log(floorPic);
-            var floorGap = -50;
             const flowerGap = 3;
             var index = 0;
             self.interval2 = setInterval(() => {
@@ -64,10 +63,10 @@ AFRAME.registerComponent('spawn-flowers', {
                 const id = Math.random().toString(36).substring(7);
                 flowerModel.setAttribute('id', id);
                 var x = flowPosition.x * flowerGap;
-                var y = -floorGap;
+                var y = ceiling;
                 var z = flowPosition.z * flowerGap - gap;
                 var temp = setInterval(() => {
-                    if (y <= floorGap) {
+                    if (y <= floor) {
                         clearInterval(temp);
                         return;
                     }
@@ -95,8 +94,8 @@ AFRAME.registerComponent('spawn-flowers', {
             }).then(bgPic => {
                 // console.log("backgroundPic");
                 // console.log(bgPic);
-                const frontGap = 300;
-                const upGap = 50;
+                const frontGap = 500;
+                const upGap = 100;
                 const budGap = 3;
                 var index = 0;
                 for (var index = 0; index < bgPic.length; index++) {
