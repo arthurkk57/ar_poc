@@ -1,16 +1,57 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 36');
+        console.log('## Version 37');
         const self = this;
+
+        const fallSpeed = 0.2;
+        const fallFrequency = 20;
+        const r = 50;
+        const ceiling = 50;
+        const floor = -50;
+        const pplR = 10;
+/*
+        // Ramdom Flower
+        self.interval = setInterval(() => {
+            var flowerModel = document.createElement('a-entity');
+            const modelId = Math.floor(Math.random() * 4) + 1;
+            flowerModel.setAttribute('gltf-model', '#flower-' + modelId);
+            const id = Math.random().toString(36).substring(7);
+            flowerModel.setAttribute('id', id);
+
+            const y = ceiling;
+            var x = Math.random() * 2 * r - r;
+            var z = Math.random() * 2 * r - r;
+            while (x * x + z * z > r * r || x * x + z * z < pplR * pplR) {
+                x = Math.random() * 2 * r - r;
+                z = Math.random() * 2 * r - r;
+            }
+            var temp = setInterval(() => {
+                if (y <= -floor) {
+                    flowerModel.parentNode.removeChild(flowerModel);
+                    clearInterval(temp);
+                    return;
+                }
+                y = y - fallSpeed;
+                flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
+            }, fallFrequency);
+            flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
+            flowerModel.setAttribute('scale', '1 1 1');
+            // flowerModel.setAttribute('material', 'opacity:1');
+            flowerModel.setAttribute('rotation', '0 0 0');
+            flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
+            document.querySelector('a-scene').appendChild(flowerModel);
+        }, 100);
+*/
+        // Floor Pic
         fetch('assets/position/floorPic.json').then(response => {
             return response.json();
         }).then(floorPic => {
             // Work with JSON data here
-            console.log(floorPic);
+            // console.log(floorPic);
             var floorGap = -50;
             const flowerGap = 3;
             var index = 0;
-            self.interval = setInterval(() => {
+            self.interval2 = setInterval(() => {
                 if (index >= floorPic.length) {
                     return;
                 }
@@ -30,9 +71,9 @@ AFRAME.registerComponent('spawn-flowers', {
                         clearInterval(temp);
                         return;
                     }
-                    y = y - 0.25;
+                    y = y - fallSpeed;
                     flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
-                }, 50);
+                }, fallFrequency);
                 flowerModel.setAttribute('position', x + ' ' + y + ' ' + z);
                 flowerModel.setAttribute('scale', '1 1 1');
                 // flowerModel.setAttribute('material', 'opacity:1');
@@ -44,7 +85,10 @@ AFRAME.registerComponent('spawn-flowers', {
         }).catch(err => {
             // Do something for an error here
         });
+
+        // Background Pic
         setTimeout(() => {
+            clearInterval(this.interval);
             clearInterval(this.interval2);
             fetch('assets/position/backgroundPic.json').then(response => {
                 return response.json();
@@ -62,7 +106,7 @@ AFRAME.registerComponent('spawn-flowers', {
 
                     var budModel = document.createElement('a-entity');
                     const modelId = Math.floor(Math.random() * 4) + 1;
-                    budModel.setAttribute('gltf-model', '#bud-' + modelId);
+                    budModel.setAttribute('gltf-model', '#flower-' + modelId);
                     budModel.setAttribute('position', x + ' ' + y + ' ' + z);
                     budModel.setAttribute('scale', '1 1 1');
                     // budModel.setAttribute('material', 'opacity:1');
@@ -77,6 +121,7 @@ AFRAME.registerComponent('spawn-flowers', {
     },
     remove: function () {
         clearInterval(this.interval);
+        clearInterval(this.interval2);
     }
 });
 
