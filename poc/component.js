@@ -1,15 +1,15 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 45');
+        console.log('## Version 46');
         const self = this;
 
         const fallSpeed = 0.2;
         const fallFrequency = 20;
         const r = 100;
-        const ceiling = 50;
-        const floor = -50;
-        const pplR = 10;
-/*
+        const ceiling = 100;
+        const floor = -100;
+        const pplR = 30;
+
         // Ramdom Flower
         self.interval = setInterval(() => {
             var flowerModel = document.createElement('a-entity');
@@ -41,7 +41,7 @@ AFRAME.registerComponent('spawn-flowers', {
             flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
             document.querySelector('a-scene').appendChild(flowerModel);
         }, 100);
-*/
+/*
         // Floor Pic
         fetch('assets/position/floorPic.json').then(response => {
             return response.json();
@@ -84,7 +84,7 @@ AFRAME.registerComponent('spawn-flowers', {
         }).catch(err => {
             // Do something for an error here
         });
-
+*/
         // Background Pic
         setTimeout(() => {
             clearInterval(this.interval);
@@ -95,7 +95,7 @@ AFRAME.registerComponent('spawn-flowers', {
                 // console.log("backgroundPic");
                 // console.log(bgPic);
                 const frontGap = 500;
-                const upGap = 100;
+                const upGap = 80;
                 const budGap = 3;
                 var index = 0;
                 for (var index = 0; index < bgPic.length; index++) {
