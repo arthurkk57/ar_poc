@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 37');
+        console.log('## Version 38');
         const self = this;
 
         const fallSpeed = 0.2;
@@ -93,13 +93,14 @@ AFRAME.registerComponent('spawn-flowers', {
             fetch('assets/position/backgroundPic.json').then(response => {
                 return response.json();
             }).then(bgPic => {
-                console.log(floorPic);
+                console.log("backgroundPic");
+                console.log(bgPic);
                 const frontGap = 50;
                 const upGap = 30;
                 const budGap = 3;
                 var index = 0;
                 for (var index = 0; index < bgPic.length; index++) {
-                    var pos = floorPic[index];
+                    var pos = bgPic[index];
                     var x = pos.x * budGap;
                     var y = pos.y * budGap + upGap;
                     var z = -frontGap;
