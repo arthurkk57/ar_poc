@@ -107,7 +107,7 @@ AFRAME.registerComponent('spawn-flowers', {
 
                     var budModel = document.createElement('a-entity');
                     const modelId = Math.floor(Math.random() * 4) + 1;
-                    budModel.setAttribute('gltf-model', '#flower-' + modelId);
+                    budModel.setAttribute('gltf-model', '#bud-' + modelId);
                     budModel.setAttribute('position', x + ' ' + y + ' ' + z);
                     budModel.setAttribute('scale', '1 1 1');
                     // budModel.setAttribute('material', 'opacity:1');
