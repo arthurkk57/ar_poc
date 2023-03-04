@@ -2,7 +2,7 @@ AFRAME.registerComponent('spawn-flowers', {
     init: function () {
         console.log('## Version 36');
         const self = this;
-        fetch('assets/floorPic.json').then(response => {
+        fetch('assets/position/floorPic.json').then(response => {
             return response.json();
         }).then(floorPic => {
             // Work with JSON data here
