@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 39');
+        console.log('## Version 41');
         const self = this;
 
         const fallSpeed = 0.2;
@@ -106,8 +106,7 @@ AFRAME.registerComponent('spawn-flowers', {
                     var z = -frontGap;
 
                     var budModel = document.createElement('a-entity');
-                    const modelId = Math.floor(Math.random() * 4) + 1;
-                    budModel.setAttribute('gltf-model', '#bud-' + modelId);
+                    budModel.setAttribute('gltf-model', '#bud-1');
                     budModel.setAttribute('position', x + ' ' + y + ' ' + z);
                     budModel.setAttribute('scale', '1 1 1');
                     // budModel.setAttribute('material', 'opacity:1');
