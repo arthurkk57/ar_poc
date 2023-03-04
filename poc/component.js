@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 47');
+        console.log('## Version 48');
         const self = this;
 
         const fallSpeed = 0.2;
@@ -18,7 +18,7 @@ AFRAME.registerComponent('spawn-flowers', {
             const id = Math.random().toString(36).substring(7);
             flowerModel.setAttribute('id', id);
 
-            const y = ceiling;
+            var y = ceiling;
             var x = Math.random() * 2 * r - r;
             var z = Math.random() * 2 * r - r;
             while (x * x + z * z > r * r || x * x + z * z < pplR * pplR) {
