@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 46');
+        console.log('## Version 47');
         const self = this;
 
         const fallSpeed = 0.2;
@@ -26,7 +26,7 @@ AFRAME.registerComponent('spawn-flowers', {
                 z = Math.random() * 2 * r - r;
             }
             var temp = setInterval(() => {
-                if (y <= -floor) {
+                if (y <= floor) {
                     flowerModel.parentNode.removeChild(flowerModel);
                     clearInterval(temp);
                     return;
