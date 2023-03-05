@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 55');
+        console.log('## Version 56');
 
         var scene = document.querySelector('a-scene');
         var renderer = scene.renderer;
@@ -151,6 +151,7 @@ document.body.appendChild(coverDiv);
     // 使用html2canvas库生成截图
     html2canvas(document.body).then(canvas => {
       // 将截图添加到页面上
+      coverDiv.style.display = 'none';
       document.body.appendChild(canvas);
     });
   }
