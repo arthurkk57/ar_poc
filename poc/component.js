@@ -1,12 +1,12 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 50');
+        console.log('## Version 51');
         const self = this;
 
         const fallSpeed = 0.2;
         const fallFrequency = 20;
         const r = 100;
-        const ceiling = 100;
+        const ceiling = 50;
         const floor = -100;
         const pplR = 30;
 
@@ -86,7 +86,7 @@ AFRAME.registerComponent('spawn-flowers', {
         });
 */
         // Background Pic
-        setTimeout(() => {
+        // setTimeout(() => {
             // clearInterval(this.interval);
             // clearInterval(this.interval2);
             fetch('assets/position/backgroundPic.json').then(response => {
@@ -116,7 +116,7 @@ AFRAME.registerComponent('spawn-flowers', {
             }).catch(err => {
                 // Do something for an error here
             });
-        }, 5000);
+        // }, 5000);
     },
     remove: function () {
         clearInterval(this.interval);
