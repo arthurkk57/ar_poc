@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 49');
+        console.log('## Version 50');
         const self = this;
 
         const fallSpeed = 0.2;
@@ -110,7 +110,7 @@ AFRAME.registerComponent('spawn-flowers', {
                     budModel.setAttribute('scale', '1 1 1');
                     // budModel.setAttribute('material', 'opacity:1');
                     budModel.setAttribute('rotation', '0 0 0');
-                    budModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
+                    // budModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
                     document.querySelector('a-scene').appendChild(budModel);
                 }
             }).catch(err => {
