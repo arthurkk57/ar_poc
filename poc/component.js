@@ -1,6 +1,13 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 53');
+        console.log('## Version 54');
+
+        var scene = document.querySelector('a-scene');
+        var renderer = scene.renderer;
+        renderer.context.getExtension('WEBGL_color_buffer_float');
+        renderer.context.getExtension('OES_texture_float_linear');
+        renderer.context.preserveDrawingBuffer = true;
+
         const self = this;
 
         const fallSpeed = 0.2;

@@ -45,7 +45,7 @@
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="debugUIEnabled: false" renderer="preserveDrawingBuffer: true">
+    <a-scene embedded arjs="debugUIEnabled: false" renderer="precision: highp; preserveDrawingBuffer: true">
         <a-assets>
             <a-asset-item id="flower-1" src="assets/flower/FlowerAR1.glb"></a-asset-item>
             <a-asset-item id="flower-2" src="assets/flower/FlowerAR2.glb"></a-asset-item>
@@ -63,7 +63,7 @@
         </a-marker>
         <a-entity id="gameplay" spawn-flowers>
         </a-entity>
-        <a-entity id="score" text="value: Version: 53; color: #F0F0F0" position="0 0 -4"></a-entity>
+        <a-entity id="score" text="value: Version: 54; color: #F0F0F0" position="0 0 -4"></a-entity>
     </a-scene>
 
     <!-- <button id="take-photo" onclick="handleButtonClick()"></button> -->
