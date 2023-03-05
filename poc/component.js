@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 48');
+        console.log('## Version 49');
         const self = this;
 
         const fallSpeed = 0.2;
@@ -40,7 +40,7 @@ AFRAME.registerComponent('spawn-flowers', {
             flowerModel.setAttribute('rotation', '0 0 0');
             flowerModel.setAttribute('animation__rotate', "property: rotation; to: 0 360 0; loop: true; dur: 5000");
             document.querySelector('a-scene').appendChild(flowerModel);
-        }, 100);
+        }, 50);
 /*
         // Floor Pic
         fetch('assets/position/floorPic.json').then(response => {
@@ -87,8 +87,8 @@ AFRAME.registerComponent('spawn-flowers', {
 */
         // Background Pic
         setTimeout(() => {
-            clearInterval(this.interval);
-            clearInterval(this.interval2);
+            // clearInterval(this.interval);
+            // clearInterval(this.interval2);
             fetch('assets/position/backgroundPic.json').then(response => {
                 return response.json();
             }).then(bgPic => {
@@ -120,7 +120,7 @@ AFRAME.registerComponent('spawn-flowers', {
     },
     remove: function () {
         clearInterval(this.interval);
-        clearInterval(this.interval2);
+        // clearInterval(this.interval2);
     }
 });
 
