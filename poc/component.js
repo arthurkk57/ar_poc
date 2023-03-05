@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 51');
+        console.log('## Version 52');
         const self = this;
 
         const fallSpeed = 0.2;
@@ -131,3 +131,11 @@ AFRAME.registerComponent('spawn-flowers', {
 //         document.body.appendChild(imageData);
 //     });
 // }
+
+function captureScreen() {
+    // 使用html2canvas库生成截图
+    html2canvas(document.body).then(canvas => {
+      // 将截图添加到页面上
+      document.body.appendChild(canvas);
+    });
+  }
