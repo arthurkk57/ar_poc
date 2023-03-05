@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 54');
+        console.log('## Version 55');
 
         var scene = document.querySelector('a-scene');
         var renderer = scene.renderer;
@@ -140,6 +140,14 @@ AFRAME.registerComponent('spawn-flowers', {
 // }
 
 function captureScreen() {
+    var coverDiv = document.createElement('div');
+coverDiv.style.position = 'absolute';
+coverDiv.style.top = '0';
+coverDiv.style.left = '0';
+coverDiv.style.width = '100%';
+coverDiv.style.height = '100%';
+coverDiv.style.background = 'white';
+document.body.appendChild(coverDiv);
     // 使用html2canvas库生成截图
     html2canvas(document.body).then(canvas => {
       // 将截图添加到页面上
