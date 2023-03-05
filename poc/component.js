@@ -1,6 +1,6 @@
 AFRAME.registerComponent('spawn-flowers', {
     init: function () {
-        console.log('## Version 52');
+        console.log('## Version 53');
         const self = this;
 
         const fallSpeed = 0.2;
