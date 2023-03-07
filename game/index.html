@@ -29,11 +29,13 @@
             outline: none;
             cursor: pointer;
         }
-        .a-dialog-allow-button {
-            background-color: #274afa;
+        a-scene .a-dialog-allow-button {
+            background-color: #F5484A;
+            color:#FFFFFF;
         }
-        .a-dialog-deny-button {
-            background-color: #274afa;
+        a-scene .a-dialog-deny-button {
+            background-color: transparent;
+            color:#333333;
         }
     </style>
     
@@ -49,10 +51,10 @@
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-    <a-scene 
+    <a-scene
         embedded arjs="debugUIEnabled: false" 
         renderer="precision: highp; preserveDrawingBuffer: true" 
-        device-orientation-permission-ui="denyButtonText: 拒绝; allowButtonText: 同意; deviceMotionMessage:balabala; ">
+        device-orientation-permission-ui="denyButtonText:不允许; allowButtonText:允许; deviceMotionMessage:“AR Flowers”想要使用你的设备运动传感器;">
         <a-assets>
             <a-asset-item id="flower-1" src="assets/flower/FlowerAR1.glb"></a-asset-item>
             <a-asset-item id="flower-2" src="assets/flower/FlowerAR2.glb"></a-asset-item>
