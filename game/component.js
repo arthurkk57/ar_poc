@@ -130,3 +130,28 @@ AFRAME.registerComponent('spawn-flowers', {
         // clearInterval(this.interval2);
     }
 });
+
+// function handleButtonClick() {
+//     html2canvas(document.body).then(function (canvas) {
+//         var imageData = canvas.toDataURL('image/png');
+//         // 在这里，你可以将 imageData 用于显示或上传到服务器
+//         document.body.appendChild(imageData);
+//     });
+// }
+
+function captureScreen() {
+    var coverDiv = document.createElement('div');
+coverDiv.style.position = 'absolute';
+coverDiv.style.top = '0';
+coverDiv.style.left = '0';
+coverDiv.style.width = '100%';
+coverDiv.style.height = '100%';
+coverDiv.style.background = 'white';
+document.body.appendChild(coverDiv);
+    // 使用html2canvas库生成截图
+    html2canvas(document.body).then(canvas => {
+      // 将截图添加到页面上
+      coverDiv.style.display = 'none';
+      document.body.appendChild(canvas);
+    });
+  }
