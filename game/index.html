@@ -40,21 +40,30 @@
             color: #333333;
         }
 
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('assets/background.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            width: 100%;
+        }
+
         #start-ar-button {
-            position: absolute;
-            width: 70%;
-            height: 8%;
-            font-size: 40px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 1rem 2rem;
-            font-size: 2rem;
-            background-color: #f44336;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
+            display: block;
+            height: 6.4%;
+            margin: 0 auto;
+            border-radius: 8px;
+            border-color: transparent;
+            background-color: #F5484A;
+            background-size: cover;
             cursor: pointer;
+            font-size: 36px;
+            position: absolute;
+            top: 50%;
+            left: 6%;
+            right: 6%;
         }
     </style>
 
@@ -70,11 +79,12 @@
 </head>
 
 <body style="margin: 0; overflow: hidden;">
-    <button id="start-ar-button" onclick="startAR()">开始AR</button>
+    <button id="start-ar-button" style="color:#FFFFFF;" onclick="startAR()">出发</button>
     <script>
         var startButton = document.querySelector("#start-ar-button");
         function startAR() {
             startButton.style.display = "none";
+            document.body.style.backgroundImage = "none";
             var scene = document.createElement('a-scene');
             scene.setAttribute('embedded', '');
             scene.setAttribute('arjs', 'debugUIEnabled: false');
